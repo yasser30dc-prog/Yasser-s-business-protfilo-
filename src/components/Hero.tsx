@@ -28,19 +28,18 @@ export default function Hero() {
                     <FadeIn delay={0.1}>
                         <div className="flex items-center gap-3 mb-6">
                             <div className="h-[1px] w-12 bg-neon-cyan" />
-                            <span className="text-neon-cyan font-medium tracking-wider text-sm">VIBE CODING</span>
+                            <span className="text-neon-cyan font-medium tracking-wider text-sm">Hello I'm Yasser Sabek</span>
                         </div>
 
                         <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-                            Building <span className="text-glow text-white">Digital</span> <br />
+                            I Build Websites That{' '}
                             <span className="bg-clip-text text-transparent bg-gradient-to-r from-neon-purple to-neon-cyan">
-                                Experiences
+                                Feel Alive
                             </span>
                         </h1>
 
                         <p className="text-gray-400 text-lg mb-8 max-w-lg leading-relaxed">
-                            I'm Yasser Sabek. A developer focused on high-performance interfaces,
-                            interactive physics, and minimalist design systems.
+                            48-hour delivery. Vibe-first design. Built for businesses that refuse to be boring.
                         </p>
 
                         <div className="flex flex-wrap gap-4 mb-12">
@@ -49,7 +48,7 @@ export default function Hero() {
                                 <ArrowRight className="group-hover:translate-x-1 transition-transform" size={18} />
                             </button>
                             <button className="px-8 py-4 rounded-full font-medium border border-white/10 hover:bg-white/5 transition-colors text-white">
-                                Contact Me
+                                Get Free Demo
                             </button>
                         </div>
 
