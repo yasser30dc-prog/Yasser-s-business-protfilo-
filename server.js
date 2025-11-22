@@ -34,10 +34,13 @@ app.post('/api/contact', async (req, res) => {
 
     try {
         // 1. Send email to the business owner (Yasser)
+        // NOTE: Using onboarding@resend.dev because custom domain is not verified yet.
+        // Can only send to the registered email address (yasser30dc@gmail.com).
         await resend.emails.send({
-            from: 'Portfolio Contact <info@sabekmedia.com>',
-            to: ['info@sabekmedia.com'], // Sending to Yasser's business email
+            from: 'Portfolio Contact <onboarding@resend.dev>',
+            to: ['yasser30dc@gmail.com'],
             subject: `New Lead: ${name}`,
+            replyTo: email, // Allow Yasser to reply directly to the lead
             html: `
                 <h1>New Contact Form Submission</h1>
                 <p><strong>Name:</strong> ${name}</p>
@@ -48,28 +51,25 @@ app.post('/api/contact', async (req, res) => {
         });
 
         // 2. Send confirmation email to the user
+        // NOTE: We cannot send to the user's email (${email}) using onboarding@resend.dev
+        // unless it's also the registered email. 
+        // SKIPPING confirmation email to user until domain is verified.
+        /*
         await resend.emails.send({
-            from: 'Yasser Sabek <info@sabekmedia.com>',
+            from: 'Yasser Sabek <onboarding@resend.dev>',
             to: [email],
             subject: 'I received your message! 🚀',
-            html: `
-                <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
-                    <h1>Hi ${name},</h1>
-                    <p>Thanks for reaching out! I've received your message and will get back to you shortly.</p>
-                    <p>In the meantime, feel free to check out my <a href="https://yasser.sabekmedia.com">portfolio</a> for more examples of my work.</p>
-                    <br>
-                    <p>Best regards,</p>
-                    <p><strong>Yasser Sabek</strong></p>
-                    <p><em>Vibe Coding Expert</em></p>
-                </div>
-            `
+            html: `...`
         });
+        */
 
-        res.status(200).json({ success: true, message: 'Emails sent successfully' });
+        res.status(200).json({ success: true, message: 'Email sent successfully (Confirmation skipped due to unverified domain)' });
     } catch (error) {
         console.error('Resend Error:', error);
         res.status(500).json({ error: 'Failed to send email' });
     }
+
+
 });
 
 // Handle React routing, return all requests to React app
