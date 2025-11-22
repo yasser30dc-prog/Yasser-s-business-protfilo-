@@ -43,13 +43,21 @@ export default function Hero() {
                         </p>
 
                         <div className="flex flex-wrap gap-4 mb-12">
-                            <button className="bg-white text-black px-8 py-4 rounded-full font-medium hover:bg-gray-200 transition-colors flex items-center gap-2 group">
+                            <button
+                                onClick={() => document.getElementById('cases')?.scrollIntoView({ behavior: 'smooth' })}
+                                className="bg-white text-black px-8 py-4 rounded-full font-medium hover:bg-gray-200 transition-colors flex items-center gap-2 group"
+                            >
                                 View Projects
                                 <ArrowRight className="group-hover:translate-x-1 transition-transform" size={18} />
                             </button>
-                            <button className="px-8 py-4 rounded-full font-medium border border-white/10 hover:bg-white/5 transition-colors text-white">
+                            <a
+                                href="https://wa.me/60145222848"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="px-8 py-4 rounded-full font-medium border border-white/10 hover:bg-white/5 transition-colors text-white inline-flex items-center"
+                            >
                                 Get Free Demo
-                            </button>
+                            </a>
                         </div>
 
                         <div className="flex items-center gap-6 text-gray-400">
