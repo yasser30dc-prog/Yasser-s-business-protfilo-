@@ -1,7 +1,47 @@
+import { useState } from 'react';
 import FadeIn from './FadeIn';
-import { Mail, Send } from 'lucide-react';
+import { Mail, Send, Check } from 'lucide-react';
 
 export default function Contact() {
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        message: ''
+    });
+    const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        setFormData(prev => ({
+            ...prev,
+            [e.target.name]: e.target.value
+        }));
+    };
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setStatus('loading');
+
+        try {
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
+
+            if (response.ok) {
+                setStatus('success');
+                setFormData({ name: '', email: '', message: '' });
+                setTimeout(() => setStatus('idle'), 5000);
+            } else {
+                setStatus('error');
+            }
+        } catch (error) {
+            console.error('Error submitting form:', error);
+            setStatus('error');
+        }
+    };
     return (
         <section id="contact" className="py-24 px-6 max-w-7xl mx-auto">
             <FadeIn>
@@ -29,27 +69,52 @@ export default function Contact() {
                             </div>
                         </div>
 
-                        <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
+                        <form className="space-y-4" onSubmit={handleSubmit}>
                             <div className="grid grid-cols-2 gap-4">
                                 <input
                                     type="text"
+                                    name="name"
+                                    value={formData.name}
+                                    onChange={handleChange}
                                     placeholder="Name"
-                                    className="bg-black/30 border border-white/10 rounded-lg px-4 py-3 focus:outline-none focus:border-neon-cyan transition-colors"
+                                    required
+                                    className="bg-black/30 border border-white/10 rounded-lg px-4 py-3 focus:outline-none focus:border-neon-cyan transition-colors w-full"
                                 />
                                 <input
                                     type="email"
+                                    name="email"
+                                    value={formData.email}
+                                    onChange={handleChange}
                                     placeholder="Email"
-                                    className="bg-black/30 border border-white/10 rounded-lg px-4 py-3 focus:outline-none focus:border-neon-cyan transition-colors"
+                                    required
+                                    className="bg-black/30 border border-white/10 rounded-lg px-4 py-3 focus:outline-none focus:border-neon-cyan transition-colors w-full"
                                 />
                             </div>
                             <textarea
+                                name="message"
+                                value={formData.message}
+                                onChange={handleChange}
                                 placeholder="Tell me about your project..."
                                 rows={4}
+                                required
                                 className="w-full bg-black/30 border border-white/10 rounded-lg px-4 py-3 focus:outline-none focus:border-neon-cyan transition-colors resize-none"
                             />
-                            <button className="w-full bg-white text-black font-bold py-4 rounded-lg hover:bg-neon-cyan transition-colors flex items-center justify-center gap-2">
-                                Send Message <Send size={18} />
+                            <button
+                                type="submit"
+                                disabled={status === 'loading' || status === 'success'}
+                                className="w-full bg-white text-black font-bold py-4 rounded-lg hover:bg-neon-cyan transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                            >
+                                {status === 'loading' ? (
+                                    <span className="animate-pulse">Sending...</span>
+                                ) : status === 'success' ? (
+                                    <>Message Sent! <Check size={18} /></>
+                                ) : (
+                                    <>Send Message <Send size={18} /></>
+                                )}
                             </button>
+                            {status === 'error' && (
+                                <p className="text-red-500 text-sm text-center">Something went wrong. Please try again.</p>
+                            )}
                         </form>
                     </div>
                 </div>
