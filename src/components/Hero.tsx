@@ -4,7 +4,7 @@ import FadeIn from './FadeIn';
 import { ArrowRight, Github, Linkedin, Mail } from 'lucide-react';
 
 export default function Hero() {
-    const [imgSrc, setImgSrc] = useState('/yasser.jpeg');
+    const [imgSrc, setImgSrc] = useState('/hero-profile.png');
     const [retryCount, setRetryCount] = useState(0);
     const [hasError, setHasError] = useState(false);
 
