@@ -1,6 +1,6 @@
 import StickyLayout from './StickyLayout';
 import FadeIn from './FadeIn';
-import { ShoppingBag, Star, ArrowRight, MessageCircle } from 'lucide-react';
+import { ShoppingBag, Star, MessageCircle } from 'lucide-react';
 
 export default function Store() {
     const products = [

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Check, Zap, BarChart3, Brain, Layout, Users, Shield } from 'lucide-react';
 import { Link } from 'react-router-dom';
