@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import FadeIn from './FadeIn';
-import { Mail, Send, Check } from 'lucide-react';
+import { Mail, Send } from 'lucide-react';
 
 export default function Contact() {
     const [formData, setFormData] = useState({
