@@ -65,7 +65,7 @@ export default function Contact() {
                                     <span className="w-2 h-2 bg-neon-green rounded-full animate-pulse" />
                                     <span>Available for new projects</span>
                                 </div>
-                                <div className="text-2xl font-bold text-white">hello@yassersabek.com</div>
+                                <div className="text-2xl font-bold text-white">yasser@sabekmedia.com</div>
                             </div>
                         </div>
 
