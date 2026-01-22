@@ -3,7 +3,7 @@ export default function Footer() {
         <footer className="py-8 border-t border-white/5 text-center text-gray-500 text-sm">
             <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
                 <div>
-                    &copy; {new Date().getFullYear()} Yasser Sabek. All rights reserved.
+                    &copy; {new Date().getFullYear()} Sabek Media LLC 30 N Gould St Ste R, Sheridan, WY 82801 . All rights reserved.
                 </div>
                 <div className="flex gap-6">
                     <a href="#" className="hover:text-white transition-colors">Twitter</a>
